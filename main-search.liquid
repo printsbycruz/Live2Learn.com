@@ -1,0 +1,59 @@
+<section class="page-width product-page">
+  <div>
+    <div class="product-gallery-main">
+      {% if product.featured_image %}
+        {{ product.featured_image | image_url: width: 1400 | image_tag: alt: product.title }}
+      {% endif %}
+    </div>
+    {% if product.images.size > 1 %}
+      <div class="product-thumbs">
+        {% for image in product.images limit: 4 %}
+          {{ image | image_url: width: 500 | image_tag: loading: 'lazy', alt: product.title }}
+        {% endfor %}
+      </div>
+    {% endif %}
+  </div>
+  <div class="product-details">
+    <div class="section-kicker">{{ section.settings.kicker }}</div>
+    <h1>{{ product.title }}</h1>
+    <div class="price">{{ product.selected_or_first_available_variant.price | money }}</div>
+    <div class="product-description">{{ product.description }}</div>
+
+    {% form 'product', product, class: 'product-form' %}
+      {% unless product.has_only_default_variant %}
+        <label for="Variant-{{ section.id }}">Choose option</label>
+        <select id="Variant-{{ section.id }}" name="id">
+          {% for variant in product.variants %}
+            <option value="{{ variant.id }}" {% if variant == product.selected_or_first_available_variant %}selected{% endif %} {% unless variant.available %}disabled{% endunless %}>
+              {{ variant.title }} — {{ variant.price | money }}
+            </option>
+          {% endfor %}
+        </select>
+      {% else %}
+        <input type="hidden" name="id" value="{{ product.selected_or_first_available_variant.id }}">
+      {% endunless %}
+      <label for="Quantity-{{ section.id }}">Quantity</label>
+      <input id="Quantity-{{ section.id }}" type="number" name="quantity" min="1" value="1">
+      <button class="button" type="submit" {% unless product.available %}disabled{% endunless %}>
+        {% if product.available %}Add to bag{% else %}Sold out{% endif %}
+      </button>
+    {% endform %}
+
+    <div class="accordion">
+      <details><summary>Shipping & returns</summary><p>{{ section.settings.shipping }}</p></details>
+      <details><summary>Materials & care</summary><p>{{ section.settings.care }}</p></details>
+      <details><summary>Product details</summary><p>{{ section.settings.details }}</p></details>
+    </div>
+  </div>
+</section>
+{% schema %}
+{
+  "name":"Main product",
+  "settings":[
+    {"type":"text","id":"kicker","label":"Small text","default":"THE FIRST DROP"},
+    {"type":"textarea","id":"shipping","label":"Shipping text","default":"Orders are processed in 2–4 business days. Final sale items cannot be returned."},
+    {"type":"textarea","id":"care","label":"Care text","default":"Spot clean only. Air dry. Do not machine wash."},
+    {"type":"textarea","id":"details","label":"Details text","default":"Vintage washed finish, front embroidery, side embroidery, and adjustable snapback."}
+  ]
+}
+{% endschema %}

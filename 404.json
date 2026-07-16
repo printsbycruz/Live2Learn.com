@@ -1,0 +1,71 @@
+{
+  "sections": {
+    "hero": {
+      "type": "hero",
+      "settings": {}
+    },
+    "featured": {
+      "type": "featured-collection",
+      "settings": {}
+    },
+    "story": {
+      "type": "story-banner",
+      "settings": {}
+    },
+    "features": {
+      "type": "feature-row",
+      "blocks": {
+        "f1": {
+          "type": "feature",
+          "settings": {
+            "icon": "\u25c9",
+            "heading": "LIMITED DROP",
+            "text": "30 pieces only."
+          }
+        },
+        "f2": {
+          "type": "feature",
+          "settings": {
+            "icon": "\u2726",
+            "heading": "PREMIUM QUALITY",
+            "text": "Made to last."
+          }
+        },
+        "f3": {
+          "type": "feature",
+          "settings": {
+            "icon": "\u25c7",
+            "heading": "TIMELESS DESIGN",
+            "text": "Wear it everywhere."
+          }
+        },
+        "f4": {
+          "type": "feature",
+          "settings": {
+            "icon": "\u2197",
+            "heading": "LIVE2LEARN",
+            "text": "More than a brand."
+          }
+        }
+      },
+      "block_order": [
+        "f1",
+        "f2",
+        "f3",
+        "f4"
+      ],
+      "settings": {}
+    },
+    "newsletter": {
+      "type": "newsletter",
+      "settings": {}
+    }
+  },
+  "order": [
+    "hero",
+    "featured",
+    "story",
+    "features",
+    "newsletter"
+  ]
+}

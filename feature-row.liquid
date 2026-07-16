@@ -1,0 +1,30 @@
+<header class="site-header">
+  <div class="page-width header-inner">
+    <button class="mobile-toggle" data-mobile-toggle aria-expanded="false" aria-label="Open menu">☰</button>
+    <nav class="header-nav" data-mobile-nav>
+      {% for link in section.settings.menu.links %}
+        <a href="{{ link.url }}">{{ link.title }}</a>
+      {% endfor %}
+    </nav>
+    <a class="header-logo" href="{{ routes.root_url }}">
+      {% if section.settings.logo != blank %}
+        {{ section.settings.logo | image_url: width: 300 | image_tag: alt: shop.name }}
+      {% else %}
+        LIVE2LEARN
+      {% endif %}
+    </a>
+    <div class="header-actions">
+      <a href="{{ routes.search_url }}">Search</a>
+      <a href="{{ routes.cart_url }}">Bag ({{ cart.item_count }})</a>
+    </div>
+  </div>
+</header>
+{% schema %}
+{
+  "name":"Header",
+  "settings":[
+    {"type":"image_picker","id":"logo","label":"Logo"},
+    {"type":"link_list","id":"menu","label":"Menu","default":"main-menu"}
+  ]
+}
+{% endschema %}

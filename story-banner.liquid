@@ -1,0 +1,12 @@
+{% if section.settings.show %}
+  <div class="announcement">{{ section.settings.text }}</div>
+{% endif %}
+{% schema %}
+{
+  "name": "Announcement bar",
+  "settings": [
+    {"type":"checkbox","id":"show","label":"Show announcement","default":true},
+    {"type":"text","id":"text","label":"Text","default":"FIRST DROP — 30 HATS AVAILABLE"}
+  ]
+}
+{% endschema %}

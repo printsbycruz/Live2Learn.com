@@ -1,0 +1,35 @@
+<footer class="footer">
+  <div class="page-width">
+    <div class="footer-grid">
+      <div>
+        <div class="footer-logo">LIVE2LEARN</div>
+        <p>{{ section.settings.tagline }}</p>
+      </div>
+      <div>
+        <h3>Explore</h3>
+        <ul>
+          {% for link in section.settings.menu.links %}
+            <li><a href="{{ link.url }}">{{ link.title }}</a></li>
+          {% endfor %}
+        </ul>
+      </div>
+      <div>
+        <h3>Follow</h3>
+        {% if section.settings.instagram != blank %}
+          <a href="{{ section.settings.instagram }}" target="_blank" rel="noopener">Instagram</a>
+        {% endif %}
+      </div>
+    </div>
+    <div class="footer-bottom">© {{ 'now' | date: '%Y' }} {{ shop.name }}. All rights reserved.</div>
+  </div>
+</footer>
+{% schema %}
+{
+  "name":"Footer",
+  "settings":[
+    {"type":"text","id":"tagline","label":"Tagline","default":"Learn. Grow. Repeat."},
+    {"type":"link_list","id":"menu","label":"Footer menu","default":"footer"},
+    {"type":"url","id":"instagram","label":"Instagram link"}
+  ]
+}
+{% endschema %}

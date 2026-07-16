@@ -1,0 +1,15 @@
+<section class="section">
+  <div class="page-width">
+    <div class="section-title"><h2>{{ collection.title }}</h2></div>
+    {% if collection.products_count > 0 %}
+      <div class="product-grid">
+        {% for product in collection.products %}
+          {% render 'product-card', product: product %}
+        {% endfor %}
+      </div>
+    {% else %}
+      <div class="empty-state">No products found.</div>
+    {% endif %}
+  </div>
+</section>
+{% schema %}{"name":"Main collection","settings":[]}{% endschema %}

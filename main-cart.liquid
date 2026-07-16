@@ -1,0 +1,39 @@
+<section class="section section--soft">
+  <div class="page-width features">
+    {% for block in section.blocks %}
+      <div {{ block.shopify_attributes }}>
+        <div class="feature-icon">{{ block.settings.icon }}</div>
+        <div class="feature-title">{{ block.settings.heading }}</div>
+        <div class="feature-text">{{ block.settings.text }}</div>
+      </div>
+    {% endfor %}
+  </div>
+</section>
+{% schema %}
+{
+  "name":"Features",
+  "max_blocks":4,
+  "blocks":[
+    {
+      "type":"feature",
+      "name":"Feature",
+      "settings":[
+        {"type":"text","id":"icon","label":"Icon or symbol","default":"✦"},
+        {"type":"text","id":"heading","label":"Heading","default":"LIMITED DROP"},
+        {"type":"text","id":"text","label":"Text","default":"Only 30 pieces available."}
+      ]
+    }
+  ],
+  "presets":[
+    {
+      "name":"Features",
+      "blocks":[
+        {"type":"feature","settings":{"icon":"◉","heading":"LIMITED DROP","text":"30 pieces only."}},
+        {"type":"feature","settings":{"icon":"✦","heading":"PREMIUM QUALITY","text":"Made to last."}},
+        {"type":"feature","settings":{"icon":"◇","heading":"TIMELESS DESIGN","text":"Wear it everywhere."}},
+        {"type":"feature","settings":{"icon":"↗","heading":"LIVE2LEARN","text":"More than a brand."}}
+      ]
+    }
+  ]
+}
+{% endschema %}
